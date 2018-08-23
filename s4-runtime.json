@@ -1,0 +1,91 @@
+{
+  "target": "bmv2",
+  "p4info": "build/detnetServices.p4info",
+  "bmv2_json": "build/detnetServices.json",
+  "table_entries": [
+    {
+      "table": "MyEgress.swtrace",
+      "default_action": true,
+      "action_name": "MyEgress.add_swtrace",
+      "action_params": {
+         "swid": 4
+       }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.1.0", 24]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:03:04:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.2.0", 24]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:03:04:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.3.0", 24]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:03:04:00",
+        "port": 2
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.4.4", 32]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:00:04:04",
+        "port": 1
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.5.0", 24]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:05:02:00",
+        "port": 3
+      }
+    },
+    {
+      "table": "MyIngress.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dstAddr": ["10.0.6.0", 24]
+      },
+      "action_name": "MyIngress.ipv4_forward",
+      "action_params": {
+        "dstAddr": "00:00:00:06:02:00",
+        "port": 4
+      }
+    },
+    {
+     "table": "MyIngress.myTunnel_exact",
+     "match": {
+        "hdr.myTunnel.dst_id": [6]
+      },
+        "action_name": "MyIngress.myTunnel_forward",
+        "action_params": {
+        "port": 4
+        }
+    }
+  ]
+}
